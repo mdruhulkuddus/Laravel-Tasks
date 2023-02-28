@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboradController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\CommentController;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
@@ -27,3 +28,6 @@ Route::group(['middleware' => 'auth'], function(){
 
 /* frontend */
 Route::get('/',[FrontendController::class, 'index'])->name('/');
+Route::get('/blog-details/{id}', [FrontendController::class, 'blogDetails'])->name('blog-details');
+/* comment*/
+Route::post('post-comment',[CommentController::class, 'saveComment'])->name('post-comment');
