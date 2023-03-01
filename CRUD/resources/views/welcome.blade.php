@@ -29,7 +29,7 @@
                             {{ session('message') }}
                         </div>
                     @endif
-                    <form action="{{ route('new-product') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('new-product') }}" method="post" enctype="multipart/form-data" class="p-3 border bg-white shadow-sm">
                         @csrf
                         <div class="mb-2">
                             <label for="exampleFormControlInput1" class="form-label">Product Name</label>
@@ -55,12 +55,12 @@
 
                 </div>
 
-                <div class="product-table col-md-12">
+                <div class="product-table col-md-12 ">
                     <hr>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-secondary mb-3 form-control">All Product</button>
                     </div>
-                    <table class="table">
+                    <table class="table border bg-white shadow-sm">
                         <thead>
                         <tr>
                             <th scope="col">SL.</th>
@@ -82,7 +82,7 @@
                                 <td> <img src="{{ asset($product -> image )}}" class="rounded" width="44" height="44" alt="img"> </td>
                                 <td>
                                     <a href="{{ route('edit-product', ['id' =>  $product -> id ]) }}" class="btn btn-sm btn-outline-primary"> Edit</a>&nbsp;
-                                    <form action="{{ route('delete-product') }}" method="post">
+                                    <form action="{{ route('delete-product') }}" method="post" style="display: inline">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                         <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you Sure to delete this product?')"> Delete</button>&nbsp;
@@ -92,8 +92,12 @@
                         @endforeach
                         </tbody>
                     </table>
-
                 </div>
+                @if(count($products) == 0)
+                    <div class="alert alert-danger text-center" role="alert">
+                        There have not find any product. Add some product.
+                    </div>
+                @endif
             </div>
         </div>
     </div>
