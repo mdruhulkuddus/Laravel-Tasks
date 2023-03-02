@@ -133,18 +133,18 @@
                         @endforeach
                         <form action="{{ route('post-comment') }}" method="post">
                             @csrf
-                            <input type="hidden" name="author_id" value="{{ Auth::id() }}">
-                            <input type="hidden" name="author_name" value="{{ Auth::user()->name }}">
-                            <input type="hidden" name="blog_id" value="{{ $blog -> id }}">
                         <div class="bg-light p-2">
                             <div class="d-flex flex-row align-items-start"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal">
                                 <textarea class="form-control ml-1 shadow-none textarea" name="comment_text" rows="4" placeholder="You should login to post Comment"></textarea></div>
                             <div class="mt-2 text-right">
                                 @if(Auth::check())
+                                    <input type="hidden" name="author_id" value="{{ Auth::id() }}">
+                                    <input type="hidden" name="author_name" value="{{ Auth::user()->name }}">
+                                    <input type="hidden" name="blog_id" value="{{ $blog -> id }}">
                                 <button class="btn btn-primary btn shadow-none" type="submit">Post comment</button>
                                 <button class="btn btn-outline-primary btn ml-1 shadow-none" type="reset">Cancel</button>
                                 @else
-                                    <a href="{{ route('login') }}" class="btn btn-primary btn shadow-none">Login</a>
+                                    <a href="{{ route('login') }}" class="btn btn-primary btn shadow-none">Login for Comment</a>
                                 @endif
                             </div>
                         </div>

@@ -54,6 +54,12 @@
             </div>
             <!-- end post -->
         @endforeach
+
+        @if(count($blogs) == 0)
+            <div class="alert alert-danger text-center" role="alert">
+                There have no blog. Create your blog to <a href="{{ route('login') }}">Login</a> and GO To Dashboard.
+            </div>
+        @endif
     </div>
 </section>
 <!-- End Featured
